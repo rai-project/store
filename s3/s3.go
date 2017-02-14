@@ -1,0 +1,51 @@
+package s3
+
+import (
+	"context"
+
+	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go/service/s3/s3manager"
+	"github.com/rai-project/aws"
+	"github.com/rai-project/store"
+)
+
+type options struct {
+}
+
+type s3Client struct {
+	client     *s3.S3
+	uploader   *s3manager.Uploader
+	downloader *s3manager.Downloader
+	s3Opts     options
+	opts       store.Options
+}
+
+func New(iopts ...store.Option) (*s3Client, error) {
+	s3Opts := options{}
+	opts := store.Options{
+		BaseURL: Config.BaseURL,
+		Bucket:  Config.Bucket,
+		Context: context.Background(),
+	}
+
+	for _, o := range iopts {
+		o(&opts)
+	}
+
+	sess, err := aws.NewSession()
+	if err != nil {
+		return nil, err
+	}
+
+	client := s3.New(sess)
+	uploader := s3manager.NewUploader(sess)
+	downloader := s3manager.NewDownloader(sess)
+
+	return &s3Client{
+		client:     client,
+		uploader:   uploader,
+		downloader: downloader,
+		s3Opts:     s3Opts,
+		opts:       opts,
+	}, nil
+}
