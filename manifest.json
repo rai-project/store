@@ -1,0 +1,37 @@
+{
+    "dependencies": {
+        "github.com/Sirupsen/logrus": {
+            "branch": "master"
+        },
+        "github.com/Unknwon/com": {
+            "branch": "master"
+        },
+        "github.com/aws/aws-sdk-go": {
+            "branch": "master"
+        },
+        "github.com/dustin/go-humanize": {
+            "branch": "master"
+        },
+        "github.com/k0kubun/pp": {
+            "branch": "master"
+        },
+        "github.com/pkg/errors": {
+            "branch": "master"
+        },
+        "github.com/rai-project/aws": {
+            "branch": "master"
+        },
+        "github.com/rai-project/config": {
+            "branch": "master"
+        },
+        "github.com/rai-project/logger": {
+            "branch": "master"
+        },
+        "github.com/rai-project/uuid": {
+            "branch": "master"
+        },
+        "github.com/rai-project/vipertags": {
+            "branch": "master"
+        }
+    }
+}

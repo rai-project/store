@@ -1,0 +1,308 @@
+{
+    "memo": "c6888633e6161df6ede8194cc569d7fc73a7c226795c8d3c915822fc537e9711",
+    "projects": [
+        {
+            "name": "github.com/GeertJohan/go-sourcepath",
+            "branch": "master",
+            "revision": "83e8b8723a9bf39481216e80575f4854c63ece4a",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/Sirupsen/logrus",
+            "branch": "master",
+            "revision": "3f603f494d61c73457fb234161d8982b9f0f0b71",
+            "packages": [
+                ".",
+                "hooks/syslog"
+            ]
+        },
+        {
+            "name": "github.com/Unknwon/com",
+            "branch": "master",
+            "revision": "28b053d5a2923b87ce8c5a08f3af779894a72758",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/aws/aws-sdk-go",
+            "branch": "master",
+            "revision": "4590e9b51cd6698144a025a75608fa7a90752d5d",
+            "packages": [
+                "aws",
+                "aws/credentials",
+                "aws/session",
+                "service/kinesis",
+                "service/s3",
+                "service/s3/s3manager"
+            ]
+        },
+        {
+            "name": "github.com/davecgh/go-spew",
+            "branch": "master",
+            "revision": "346938d642f2ec3594ed81d874461961cd0faa76",
+            "packages": [
+                "spew"
+            ]
+        },
+        {
+            "name": "github.com/dustin/go-humanize",
+            "branch": "master",
+            "revision": "2fcb5204cdc65b4bec9fd0a87606bb0d0e3c54e8",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/evalphobia/logrus_kinesis",
+            "branch": "master",
+            "revision": "3a9524d4e5540cc81c920ee17bd8ad1d47437f5d",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/fatih/color",
+            "branch": "master",
+            "revision": "bf82308e8c8546dc2b945157173eb8a959ae9505",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/fatih/structs",
+            "branch": "master",
+            "revision": "dc3312cb1a4513a366c4c9e622ad55c32df12ed3",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/fsnotify/fsnotify",
+            "branch": "master",
+            "revision": "a904159b9206978bb6d53fcc7a769e5cd726c737",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/go-ini/ini",
+            "version": "v1.24.0",
+            "revision": "e3c2d47c61e5333f9aa2974695dd94396eb69c75",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/hashicorp/hcl",
+            "branch": "master",
+            "revision": "372e8ddaa16fd67e371e9323807d056b799360af",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/jmespath/go-jmespath",
+            "version": "0.2.2",
+            "revision": "3433f3ea46d9f8019119e7dd41274e112a2359a9",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/k0kubun/pp",
+            "branch": "master",
+            "revision": "f5dce6ed0ccf6c350f1679964ff6b61f3d6d2033",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/magiconair/properties",
+            "branch": "master",
+            "revision": "b3b15ef068fd0b17ddf408a23669f20811d194d2",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/mattn/go-colorable",
+            "branch": "master",
+            "revision": "d228849504861217f796da67fae4f6e347643f15",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/mattn/go-isatty",
+            "branch": "master",
+            "revision": "30a891c33c7cde7b02a981314b4228ec99380cca",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/mitchellh/go-homedir",
+            "branch": "master",
+            "revision": "b8bc1bf767474819792c23f32d8286a45736f1c6",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/mitchellh/mapstructure",
+            "branch": "master",
+            "revision": "db1efb556f84b25a0a13a04aad883943538ad2e0",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/pelletier/go-buffruneio",
+            "branch": "master",
+            "revision": "df1e16fde7fc330a0ca68167c23bf7ed6ac31d6d",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/pelletier/go-toml",
+            "branch": "master",
+            "revision": "d1fa2118c12c44e4f5004da216d1efad10cb4924",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/pkg/errors",
+            "branch": "master",
+            "revision": "248dadf4e9068a0b3e79f02ed0a610d935de5302",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/rai-project/aws",
+            "branch": "master",
+            "revision": "913fcf762ff8dc1daee2bf8cfe0a50f61aac83a5",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/rai-project/config",
+            "branch": "master",
+            "revision": "f52ed1ceef260d86c450ac8699a4fb48b8be1ec7",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/rai-project/godotenv",
+            "branch": "master",
+            "revision": "49a98d71a654e5f90239723ae80518a1e234bdd5",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/rai-project/logger",
+            "branch": "master",
+            "revision": "c2cee355c0b630c5f6c2c169bdf541b32c9f8b06",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/rai-project/uuid",
+            "branch": "master",
+            "revision": "fe2d5146474c65b2b2eb5c304047b5680dd83414",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/rai-project/vipertags",
+            "branch": "master",
+            "revision": "4c19aeb860712d64f43acda5c25fd8d83b940a02",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/satori/go.uuid",
+            "branch": "master",
+            "revision": "b061729afc07e77a8aa4fad0a2fd840958f1942a",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/spf13/afero",
+            "branch": "master",
+            "revision": "72b31426848c6ef12a7a8e216708cb0d1530f074",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/spf13/cast",
+            "branch": "master",
+            "revision": "d1139bab1c07d5ad390a65e7305876b3c1a8370b",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/spf13/jwalterweatherman",
+            "branch": "master",
+            "revision": "fa7ca7e836cf3a8bb4ebf799f472c12d7e903d66",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/spf13/pflag",
+            "branch": "master",
+            "revision": "9ff6c6923cfffbcd502984b8e0c80539a94968b7",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/spf13/viper",
+            "branch": "master",
+            "revision": "5ed0fc31f7f453625df314d8e66b9791e8d13003",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "golang.org/x/sys",
+            "branch": "master",
+            "revision": "7a6e5648d140666db5d920909e082ca00a87ba2c",
+            "packages": [
+                "unix"
+            ]
+        },
+        {
+            "name": "golang.org/x/text",
+            "branch": "master",
+            "revision": "06d6eba81293389cafdff7fca90d75592194b2d9",
+            "packages": [
+                "transform",
+                "unicode/norm"
+            ]
+        },
+        {
+            "name": "gopkg.in/yaml.v2",
+            "branch": "v2",
+            "revision": "a3f3340b5840cee44f372bddb5880fcbc419b46a",
+            "packages": [
+                "."
+            ]
+        }
+    ]
+}
