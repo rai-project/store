@@ -1,6 +1,10 @@
 package store
 
-import "context"
+import (
+	"context"
+
+	"github.com/rai-project/store"
+)
 
 type Options struct {
 	BaseURL string
@@ -9,6 +13,18 @@ type Options struct {
 }
 
 type Option func(*Options)
+
+func BaseURL(s string) store.Option {
+	return func(o *store.UploadOptions) {
+		o.BaseURL = s
+	}
+}
+
+func Bucket(s string) store.Option {
+	return func(o *store.UploadOptions) {
+		o.Bucket = s
+	}
+}
 
 type UploadOptions struct {
 	Context context.Context
@@ -28,3 +44,9 @@ type ListOptions struct {
 }
 
 type ListOption func(*ListOptions)
+
+func Max(m int64) store.ListOption {
+	return func(o *store.UploadOptions) {
+		o.Max = m
+	}
+}
