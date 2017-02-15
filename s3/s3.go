@@ -49,3 +49,7 @@ func New(iopts ...store.Option) (*s3Client, error) {
 		opts:       opts,
 	}, nil
 }
+
+func (*s3Client) Name() string {
+	return "S3"
+}

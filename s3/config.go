@@ -7,9 +7,10 @@ import (
 )
 
 type s3Config struct {
-	BaseURL string `json:"base_url" config:"store.base_url" default:"http://s3.amazonaws.com/rai-server/"`
-	Bucket  string `json:"bucket" config:"store.bucket" default:"rai"`
-	ACL     string `json:"acl" config:"store.acl" default:"public-read"`
+	Provider string `json:"provider" config:"store.provider" default:"s3"`
+	BaseURL  string `json:"base_url" config:"store.base_url" default:"http://s3.amazonaws.com/rai-server/"`
+	Bucket   string `json:"bucket" config:"store.bucket" default:"rai"`
+	ACL      string `json:"acl" config:"store.acl" default:"public-read"`
 }
 
 var (
