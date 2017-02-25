@@ -4,6 +4,7 @@ import (
 	"context"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/rai-project/store"
 )
 
@@ -13,6 +14,7 @@ const (
 	fileSizeLimitKey = "github.com/rai-project/store/s3/fileSizeLimitKey"
 	aclKey           = "github.com/rai-project/store/s3/acl"
 	mimetypeKey      = "github.com/rai-project/store/s3/mimetype"
+	sessionKey       = "github.com/rai-project/store/s3/session"
 )
 
 func Metadata(m map[string]*string) store.UploadOption {
@@ -42,5 +44,11 @@ func MimeType(s string) store.UploadOption {
 func ACL(acl string) store.UploadOption {
 	return func(o *store.UploadOptions) {
 		o.Context = context.WithValue(o.Context, aclKey, acl)
+	}
+}
+
+func Session(s *session.Session) store.UploadOption {
+	return func(o *store.UploadOptions) {
+		o.Context = context.WithValue(o.Context, sessionKey, s)
 	}
 }

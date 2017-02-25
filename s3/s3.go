@@ -3,6 +3,7 @@ package s3
 import (
 	"context"
 
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 	"github.com/rai-project/aws"
@@ -32,9 +33,16 @@ func New(iopts ...store.Option) (*s3Client, error) {
 		o(&opts)
 	}
 
-	sess, err := aws.NewSession()
-	if err != nil {
-		return nil, err
+	var sess *session.Session
+	if s, ok := opts.Context.Value(sessionKey).(*session.Session); ok && s != nil {
+		sess = s
+	}
+	if sess == nil {
+		var err error
+		sess, err = aws.NewSession()
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	client := s3.New(sess)
