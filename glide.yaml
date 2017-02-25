@@ -1,18 +1,22 @@
 package: github.com/rai-project/store
 import:
+- package: bitbucket.org/c3sr/p3sr-store
 - package: github.com/Sirupsen/logrus
   version: ~0.11.2
 - package: github.com/Unknwon/com
   version: ~1.0.0
 - package: github.com/aws/aws-sdk-go
-  version: ~1.6.22
+  version: ~1.7.1
   subpackages:
   - aws
+  - aws/session
   - service/s3
   - service/s3/s3manager
 - package: github.com/dustin/go-humanize
 - package: github.com/k0kubun/pp
   version: ~2.3.0
+- package: github.com/labstack/echo
+  version: ~3.0.3
 - package: github.com/pkg/errors
   version: ~0.8.0
 - package: github.com/rai-project/aws
@@ -20,3 +24,4 @@ import:
 - package: github.com/rai-project/logger
 - package: github.com/rai-project/uuid
 - package: github.com/rai-project/vipertags
+- package: github.com/spf13/cobra

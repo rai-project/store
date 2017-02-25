@@ -1,6 +1,30 @@
 {
-    "memo": "c6888633e6161df6ede8194cc569d7fc73a7c226795c8d3c915822fc537e9711",
+    "memo": "7881950a592b69cf5ad747e86cfc0063f71affdbbecb6ffa66ff140c80192873",
     "projects": [
+        {
+            "name": "bitbucket.org/c3sr/p3sr-config",
+            "branch": "master",
+            "revision": "9cf25b3dbb35e600e134042df089124d38051265",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "bitbucket.org/c3sr/p3sr-logger",
+            "branch": "master",
+            "revision": "b242661ad3e129e588af191dbcf2157b1154494c",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "bitbucket.org/c3sr/p3sr-store",
+            "branch": "master",
+            "revision": "2e19807e5605ac897bdaafe7d220670d2dafb96f",
+            "packages": [
+                "."
+            ]
+        },
         {
             "name": "github.com/GeertJohan/go-sourcepath",
             "branch": "master",
@@ -12,7 +36,7 @@
         {
             "name": "github.com/Sirupsen/logrus",
             "branch": "master",
-            "revision": "3f603f494d61c73457fb234161d8982b9f0f0b71",
+            "revision": "7f4b1adc791766938c29457bed0703fb9134421a",
             "packages": [
                 ".",
                 "hooks/syslog"
@@ -21,7 +45,7 @@
         {
             "name": "github.com/Unknwon/com",
             "branch": "master",
-            "revision": "28b053d5a2923b87ce8c5a08f3af779894a72758",
+            "revision": "0db4a625e949e956314d7d1adea9bf82384cc10c",
             "packages": [
                 "."
             ]
@@ -29,14 +53,35 @@
         {
             "name": "github.com/aws/aws-sdk-go",
             "branch": "master",
-            "revision": "4590e9b51cd6698144a025a75608fa7a90752d5d",
+            "revision": "2d3b3bc3aae6a09a9b194aa6eb71326fcbe2e918",
             "packages": [
                 "aws",
+                "aws/awserr",
+                "aws/awsutil",
+                "aws/client",
+                "aws/client/metadata",
+                "aws/corehandlers",
                 "aws/credentials",
+                "aws/credentials/ec2rolecreds",
+                "aws/credentials/endpointcreds",
+                "aws/credentials/stscreds",
+                "aws/defaults",
+                "aws/ec2metadata",
+                "aws/endpoints",
+                "aws/request",
                 "aws/session",
-                "service/kinesis",
+                "aws/signer/v4",
+                "private/protocol",
+                "private/protocol/query",
+                "private/protocol/query/queryutil",
+                "private/protocol/rest",
+                "private/protocol/restxml",
+                "private/protocol/xml/xmlutil",
+                "private/waiter",
                 "service/s3",
-                "service/s3/s3manager"
+                "service/s3/s3iface",
+                "service/s3/s3manager",
+                "service/sts"
             ]
         },
         {
@@ -48,17 +93,21 @@
             ]
         },
         {
-            "name": "github.com/dustin/go-humanize",
+            "name": "github.com/dsnet/compress",
             "branch": "master",
-            "revision": "2fcb5204cdc65b4bec9fd0a87606bb0d0e3c54e8",
+            "revision": "b9aab3c6a04eef14c56384b4ad065e7b73438862",
             "packages": [
-                "."
+                ".",
+                "bzip2",
+                "bzip2/internal/sais",
+                "internal",
+                "internal/prefix"
             ]
         },
         {
-            "name": "github.com/evalphobia/logrus_kinesis",
+            "name": "github.com/dustin/go-humanize",
             "branch": "master",
-            "revision": "3a9524d4e5540cc81c920ee17bd8ad1d47437f5d",
+            "revision": "7a41df006ff9af79a29f0ffa9c5f21fbe6314a2d",
             "packages": [
                 "."
             ]
@@ -66,7 +115,7 @@
         {
             "name": "github.com/fatih/color",
             "branch": "master",
-            "revision": "bf82308e8c8546dc2b945157173eb8a959ae9505",
+            "revision": "7824417a424b65227be8ac9b14d545a7f3e6c3f0",
             "packages": [
                 "."
             ]
@@ -74,7 +123,7 @@
         {
             "name": "github.com/fatih/structs",
             "branch": "master",
-            "revision": "dc3312cb1a4513a366c4c9e622ad55c32df12ed3",
+            "revision": "a720dfa8df582c51dee1b36feabb906bde1588bd",
             "packages": [
                 "."
             ]
@@ -89,8 +138,8 @@
         },
         {
             "name": "github.com/go-ini/ini",
-            "version": "v1.24.0",
-            "revision": "e3c2d47c61e5333f9aa2974695dd94396eb69c75",
+            "version": "v1.25.2",
+            "revision": "74bdc99692c3408cb103221e38675ce8fda0a718",
             "packages": [
                 "."
             ]
@@ -99,6 +148,22 @@
             "name": "github.com/hashicorp/hcl",
             "branch": "master",
             "revision": "372e8ddaa16fd67e371e9323807d056b799360af",
+            "packages": [
+                ".",
+                "hcl/ast",
+                "hcl/parser",
+                "hcl/scanner",
+                "hcl/strconv",
+                "hcl/token",
+                "json/parser",
+                "json/scanner",
+                "json/token"
+            ]
+        },
+        {
+            "name": "github.com/inconshreveable/mousetrap",
+            "branch": "master",
+            "revision": "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75",
             "packages": [
                 "."
             ]
@@ -112,11 +177,37 @@
             ]
         },
         {
+            "name": "github.com/joho/godotenv",
+            "branch": "master",
+            "revision": "726cc8b906e3d31c70a9671c90a13716a8d3f50d",
+            "packages": [
+                ".",
+                "autoload"
+            ]
+        },
+        {
             "name": "github.com/k0kubun/pp",
             "branch": "master",
-            "revision": "f5dce6ed0ccf6c350f1679964ff6b61f3d6d2033",
+            "revision": "d1532fc5d94ecdf2da29e24d7b99721f3287de4a",
             "packages": [
                 "."
+            ]
+        },
+        {
+            "name": "github.com/labstack/echo",
+            "branch": "master",
+            "revision": "29fd5831ffabdaf42952723539415d711253fe0f",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/labstack/gommon",
+            "branch": "master",
+            "revision": "e8995fb26e646187d33cff439b18609cfba23088",
+            "packages": [
+                "color",
+                "log"
             ]
         },
         {
@@ -130,7 +221,7 @@
         {
             "name": "github.com/mattn/go-colorable",
             "branch": "master",
-            "revision": "d228849504861217f796da67fae4f6e347643f15",
+            "revision": "d898aa9fb31c91f35dd28ca75db377eff023c076",
             "packages": [
                 "."
             ]
@@ -138,7 +229,7 @@
         {
             "name": "github.com/mattn/go-isatty",
             "branch": "master",
-            "revision": "30a891c33c7cde7b02a981314b4228ec99380cca",
+            "revision": "dda3de49cbfcec471bd7a70e6cc01fcc3ff90109",
             "packages": [
                 "."
             ]
@@ -170,7 +261,7 @@
         {
             "name": "github.com/pelletier/go-toml",
             "branch": "master",
-            "revision": "d1fa2118c12c44e4f5004da216d1efad10cb4924",
+            "revision": "22139eb5469018e7374b3e7ef653de37ffb44f72",
             "packages": [
                 "."
             ]
@@ -186,7 +277,7 @@
         {
             "name": "github.com/rai-project/aws",
             "branch": "master",
-            "revision": "913fcf762ff8dc1daee2bf8cfe0a50f61aac83a5",
+            "revision": "72e45597b74b64419bcf7cc8b5399c34608538cf",
             "packages": [
                 "."
             ]
@@ -194,7 +285,7 @@
         {
             "name": "github.com/rai-project/config",
             "branch": "master",
-            "revision": "f52ed1ceef260d86c450ac8699a4fb48b8be1ec7",
+            "revision": "aaa7c06b6f064cba801824391bc4799ea95180ac",
             "packages": [
                 "."
             ]
@@ -210,7 +301,7 @@
         {
             "name": "github.com/rai-project/logger",
             "branch": "master",
-            "revision": "c2cee355c0b630c5f6c2c169bdf541b32c9f8b06",
+            "revision": "03464c07fcdd71ef8f4f86106a93901aa6272de5",
             "packages": [
                 "."
             ]
@@ -218,7 +309,7 @@
         {
             "name": "github.com/rai-project/uuid",
             "branch": "master",
-            "revision": "fe2d5146474c65b2b2eb5c304047b5680dd83414",
+            "revision": "3d7dffa61a8cdf7eae67c953c2f6aad1210ce8eb",
             "packages": [
                 "."
             ]
@@ -226,7 +317,7 @@
         {
             "name": "github.com/rai-project/vipertags",
             "branch": "master",
-            "revision": "4c19aeb860712d64f43acda5c25fd8d83b940a02",
+            "revision": "c548926ed2e6b30c7bd8020849e386ea9d4d15c4",
             "packages": [
                 "."
             ]
@@ -240,17 +331,42 @@
             ]
         },
         {
+            "name": "github.com/sebest/logrusly",
+            "branch": "master",
+            "revision": "11d799ee200f3849199eab513fe08bc7bd2d464e",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/segmentio/go-loggly",
+            "version": "v0.4.3",
+            "revision": "7c4f9c95707ab46d8ab21393f8cb41857a5e333e",
+            "packages": [
+                "."
+            ]
+        },
+        {
             "name": "github.com/spf13/afero",
             "branch": "master",
             "revision": "72b31426848c6ef12a7a8e216708cb0d1530f074",
             "packages": [
-                "."
+                ".",
+                "mem"
             ]
         },
         {
             "name": "github.com/spf13/cast",
             "branch": "master",
             "revision": "d1139bab1c07d5ad390a65e7305876b3c1a8370b",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/spf13/cobra",
+            "branch": "master",
+            "revision": "ee4055870c2d5f7ce112642377e32c9929c3bbaf",
             "packages": [
                 "."
             ]
@@ -280,9 +396,51 @@
             ]
         },
         {
+            "name": "github.com/valyala/bytebufferpool",
+            "branch": "master",
+            "revision": "e746df99fe4a3986f4d4f79e13c1e0117ce9c2f7",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/valyala/fasttemplate",
+            "branch": "master",
+            "revision": "d090d65668a286d9a180d43a19dfdc5dcad8fe88",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/visionmedia/go-debug",
+            "version": "v2.0.0",
+            "revision": "ff4a55a20a86994118644bbddc6a216da193cc13",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "golang.org/x/crypto",
+            "branch": "master",
+            "revision": "453249f01cfeb54c3d549ddb75ff152ca243f9d8",
+            "packages": [
+                "acme",
+                "acme/autocert"
+            ]
+        },
+        {
+            "name": "golang.org/x/net",
+            "branch": "master",
+            "revision": "6b27048ae5e6ad1ef927e72e437531493de612fe",
+            "packages": [
+                "context",
+                "context/ctxhttp"
+            ]
+        },
+        {
             "name": "golang.org/x/sys",
             "branch": "master",
-            "revision": "7a6e5648d140666db5d920909e082ca00a87ba2c",
+            "revision": "075e574b89e4c2d22f2286a7e2b919519c6f3547",
             "packages": [
                 "unix"
             ]
@@ -290,10 +448,22 @@
         {
             "name": "golang.org/x/text",
             "branch": "master",
-            "revision": "06d6eba81293389cafdff7fca90d75592194b2d9",
+            "revision": "85c29909967d7f171f821e7a42e7b7af76fb9598",
             "packages": [
+                "internal/gen",
+                "internal/triegen",
+                "internal/ucd",
                 "transform",
+                "unicode/cldr",
                 "unicode/norm"
+            ]
+        },
+        {
+            "name": "gopkg.in/polds/logrus-papertrail-hook.v2",
+            "branch": "master",
+            "revision": "dfa4a9f9a7b1d4cced6f29b140a767162a2dceaa",
+            "packages": [
+                "."
             ]
         },
         {

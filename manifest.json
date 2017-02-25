@@ -1,5 +1,8 @@
 {
     "dependencies": {
+        "bitbucket.org/c3sr/p3sr-store": {
+            "branch": "master"
+        },
         "github.com/Sirupsen/logrus": {
             "branch": "master"
         },
@@ -13,6 +16,9 @@
             "branch": "master"
         },
         "github.com/k0kubun/pp": {
+            "branch": "master"
+        },
+        "github.com/labstack/echo": {
             "branch": "master"
         },
         "github.com/pkg/errors": {
@@ -31,6 +37,9 @@
             "branch": "master"
         },
         "github.com/rai-project/vipertags": {
+            "branch": "master"
+        },
+        "github.com/spf13/cobra": {
             "branch": "master"
         }
     }
