@@ -1,8 +1,5 @@
 {
     "dependencies": {
-        "bitbucket.org/c3sr/p3sr-store": {
-            "branch": "master"
-        },
         "github.com/Sirupsen/logrus": {
             "branch": "master"
         },

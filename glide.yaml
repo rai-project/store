@@ -1,6 +1,5 @@
 package: github.com/rai-project/store
 import:
-- package: bitbucket.org/c3sr/p3sr-store
 - package: github.com/Sirupsen/logrus
   version: ~0.11.2
 - package: github.com/Unknwon/com

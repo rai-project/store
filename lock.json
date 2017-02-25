@@ -1,30 +1,6 @@
 {
-    "memo": "7881950a592b69cf5ad747e86cfc0063f71affdbbecb6ffa66ff140c80192873",
+    "memo": "a2997c309770e00b5af8121be7e2925d968ce9694478522fb411771e2864c5b6",
     "projects": [
-        {
-            "name": "bitbucket.org/c3sr/p3sr-config",
-            "branch": "master",
-            "revision": "9cf25b3dbb35e600e134042df089124d38051265",
-            "packages": [
-                "."
-            ]
-        },
-        {
-            "name": "bitbucket.org/c3sr/p3sr-logger",
-            "branch": "master",
-            "revision": "b242661ad3e129e588af191dbcf2157b1154494c",
-            "packages": [
-                "."
-            ]
-        },
-        {
-            "name": "bitbucket.org/c3sr/p3sr-store",
-            "branch": "master",
-            "revision": "2e19807e5605ac897bdaafe7d220670d2dafb96f",
-            "packages": [
-                "."
-            ]
-        },
         {
             "name": "github.com/GeertJohan/go-sourcepath",
             "branch": "master",
@@ -90,18 +66,6 @@
             "revision": "346938d642f2ec3594ed81d874461961cd0faa76",
             "packages": [
                 "spew"
-            ]
-        },
-        {
-            "name": "github.com/dsnet/compress",
-            "branch": "master",
-            "revision": "b9aab3c6a04eef14c56384b4ad065e7b73438862",
-            "packages": [
-                ".",
-                "bzip2",
-                "bzip2/internal/sais",
-                "internal",
-                "internal/prefix"
             ]
         },
         {
@@ -174,15 +138,6 @@
             "revision": "3433f3ea46d9f8019119e7dd41274e112a2359a9",
             "packages": [
                 "."
-            ]
-        },
-        {
-            "name": "github.com/joho/godotenv",
-            "branch": "master",
-            "revision": "726cc8b906e3d31c70a9671c90a13716a8d3f50d",
-            "packages": [
-                ".",
-                "autoload"
             ]
         },
         {
@@ -331,22 +286,6 @@
             ]
         },
         {
-            "name": "github.com/sebest/logrusly",
-            "branch": "master",
-            "revision": "11d799ee200f3849199eab513fe08bc7bd2d464e",
-            "packages": [
-                "."
-            ]
-        },
-        {
-            "name": "github.com/segmentio/go-loggly",
-            "version": "v0.4.3",
-            "revision": "7c4f9c95707ab46d8ab21393f8cb41857a5e333e",
-            "packages": [
-                "."
-            ]
-        },
-        {
             "name": "github.com/spf13/afero",
             "branch": "master",
             "revision": "72b31426848c6ef12a7a8e216708cb0d1530f074",
@@ -412,14 +351,6 @@
             ]
         },
         {
-            "name": "github.com/visionmedia/go-debug",
-            "version": "v2.0.0",
-            "revision": "ff4a55a20a86994118644bbddc6a216da193cc13",
-            "packages": [
-                "."
-            ]
-        },
-        {
             "name": "golang.org/x/crypto",
             "branch": "master",
             "revision": "453249f01cfeb54c3d549ddb75ff152ca243f9d8",
@@ -456,14 +387,6 @@
                 "transform",
                 "unicode/cldr",
                 "unicode/norm"
-            ]
-        },
-        {
-            "name": "gopkg.in/polds/logrus-papertrail-hook.v2",
-            "branch": "master",
-            "revision": "dfa4a9f9a7b1d4cced6f29b140a767162a2dceaa",
-            "packages": [
-                "."
             ]
         },
         {

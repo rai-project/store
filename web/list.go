@@ -3,8 +3,8 @@ package web
 import (
 	"net/http"
 
-	store "bitbucket.org/c3sr/p3sr-store"
 	"github.com/labstack/echo"
+	"github.com/rai-project/store"
 )
 
 func list(c echo.Context) error {
