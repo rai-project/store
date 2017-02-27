@@ -119,6 +119,9 @@ func (s *s3Client) UploadFrom(reader io.Reader, key string, opts ...store.Upload
 		t := time.Now().Add(e)
 		expires = aws.Time(t)
 	}
+	if e, ok := options.Context.Value(expirationKey).(time.Time); ok {
+		expires = aws.Time(e)
+	}
 
 	metadata := map[string]*string{}
 	if m, ok := options.Context.Value(metadataKey).(map[string]*string); ok {

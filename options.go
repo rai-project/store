@@ -2,8 +2,6 @@ package store
 
 import (
 	"context"
-
-	"github.com/rai-project/store"
 )
 
 type Options struct {
@@ -14,14 +12,14 @@ type Options struct {
 
 type Option func(*Options)
 
-func BaseURL(s string) store.Option {
-	return func(o *store.UploadOptions) {
+func BaseURL(s string) Option {
+	return func(o *Options) {
 		o.BaseURL = s
 	}
 }
 
-func Bucket(s string) store.Option {
-	return func(o *store.UploadOptions) {
+func Bucket(s string) Option {
+	return func(o *Options) {
 		o.Bucket = s
 	}
 }
@@ -45,8 +43,8 @@ type ListOptions struct {
 
 type ListOption func(*ListOptions)
 
-func Max(m int64) store.ListOption {
-	return func(o *store.UploadOptions) {
+func Max(m int64) ListOption {
+	return func(o *ListOptions) {
 		o.Max = m
 	}
 }

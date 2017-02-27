@@ -10,8 +10,9 @@ import (
 
 const (
 	metadataKey      = "github.com/rai-project/store/s3/metadata"
-	lifetimeKey      = "github.com/rai-project/store/s3/lifetimeKey"
-	fileSizeLimitKey = "github.com/rai-project/store/s3/fileSizeLimitKey"
+	lifetimeKey      = "github.com/rai-project/store/s3/lifetime"
+	expirationKey    = "github.com/rai-project/store/s3/expiration"
+	fileSizeLimitKey = "github.com/rai-project/store/s3/fileSizeLimit"
 	aclKey           = "github.com/rai-project/store/s3/acl"
 	mimetypeKey      = "github.com/rai-project/store/s3/mimetype"
 	sessionKey       = "github.com/rai-project/store/s3/session"
@@ -20,6 +21,12 @@ const (
 func Metadata(m map[string]*string) store.UploadOption {
 	return func(o *store.UploadOptions) {
 		o.Context = context.WithValue(o.Context, metadataKey, m)
+	}
+}
+
+func Expiration(t time.Time) store.UploadOption {
+	return func(o *store.UploadOptions) {
+		o.Context = context.WithValue(o.Context, expirationKey, t)
 	}
 }
 
