@@ -54,8 +54,8 @@ func ACL(acl string) store.UploadOption {
 	}
 }
 
-func Session(s *session.Session) store.UploadOption {
-	return func(o *store.UploadOptions) {
+func Session(s *session.Session) store.Option {
+	return func(o *store.Options) {
 		o.Context = context.WithValue(o.Context, sessionKey, s)
 	}
 }

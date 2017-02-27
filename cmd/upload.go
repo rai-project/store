@@ -9,13 +9,19 @@ import (
 	"github.com/k0kubun/pp"
 	"github.com/pkg/errors"
 	"github.com/rai-project/archive"
+	"github.com/rai-project/aws"
 	"github.com/rai-project/store"
 	"github.com/rai-project/store/s3"
 	"github.com/rai-project/uuid"
 	"github.com/spf13/cobra"
 )
 
-var uploadKey string
+var (
+	uploadKey string
+	baseURL   string
+	accessKey string
+	secretKey string
+)
 
 // uploadCmd represents the upload command
 var uploadCmd = &cobra.Command{
@@ -53,8 +59,13 @@ var uploadCmd = &cobra.Command{
 			uploadKey = uuid.New(fileName)
 		}
 
+		awsSession, err := aws.NewSession(aws.AccessKey(accessKey), aws.SecretKey(secretKey))
+		if err != nil {
+			return err
+		}
 		str, err := s3.New(
-			store.BaseURL("http://s3.amazonaws.com/rai-server/"),
+			store.BaseURL(baseURL),
+			s3.Session(awsSession),
 		)
 		if err != nil {
 			return errors.Wrapf(err, "unable to create an s3 connection")
@@ -76,4 +87,7 @@ var uploadCmd = &cobra.Command{
 
 func init() {
 	uploadCmd.PersistentFlags().StringVarP(&uploadKey, "key", "k", "", "upload key")
+	uploadCmd.PersistentFlags().StringVarP(&uploadKey, "baseurl", "b", "", "base url")
+	uploadCmd.PersistentFlags().StringVarP(&uploadKey, "accesskey", "a", "", "aws access key")
+	uploadCmd.PersistentFlags().StringVarP(&uploadKey, "secretkey", "s", "", "aws secret key")
 }
