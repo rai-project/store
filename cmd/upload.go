@@ -87,7 +87,7 @@ var uploadCmd = &cobra.Command{
 
 func init() {
 	uploadCmd.PersistentFlags().StringVarP(&uploadKey, "key", "k", "", "upload key")
-	uploadCmd.PersistentFlags().StringVarP(&uploadKey, "baseurl", "b", "", "base url")
-	uploadCmd.PersistentFlags().StringVarP(&uploadKey, "accesskey", "a", "", "aws access key")
-	uploadCmd.PersistentFlags().StringVarP(&uploadKey, "secretkey", "s", "", "aws secret key")
+	uploadCmd.PersistentFlags().StringVarP(&baseURL, "baseurl", "b", "", "base url")
+	uploadCmd.PersistentFlags().StringVarP(&accessKey, "accesskey", "a", "", "aws access key")
+	uploadCmd.PersistentFlags().StringVarP(&secretKey, "secretkey", "s", "", "aws secret key")
 }
