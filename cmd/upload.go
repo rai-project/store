@@ -17,10 +17,11 @@ import (
 )
 
 var (
-	uploadKey string
-	baseURL   string
-	accessKey string
-	secretKey string
+	uploadKey        string
+	baseURL          string
+	accessKey        string
+	secretKey        string
+	expirationMonths int
 )
 
 // uploadCmd represents the upload command
@@ -71,9 +72,18 @@ var uploadCmd = &cobra.Command{
 			return errors.Wrapf(err, "unable to create an s3 connection")
 		}
 
+		uploadOpts := []store.UploadOption{}
+
+		if expirationMonths != 0 {
+			uploadOpts = append(
+				uploadOpts,
+				s3.Expiration(time.Now().AddDate(0, expirationMonths, 0)),
+			)
+		}
+
 		key, err := str.UploadFrom(reader,
 			uploadKey,
-			s3.Expiration(time.Now().AddDate(0, 1, 0)),
+			uploadOpts...,
 		)
 		if err != nil {
 			return err
@@ -90,4 +100,5 @@ func init() {
 	uploadCmd.PersistentFlags().StringVarP(&baseURL, "baseurl", "b", "", "base url")
 	uploadCmd.PersistentFlags().StringVarP(&accessKey, "accesskey", "a", "", "aws access key")
 	uploadCmd.PersistentFlags().StringVarP(&secretKey, "secretkey", "s", "", "aws secret key")
+	uploadCmd.PersistentFlags().IntVarP(&expirationMonths, "expiration", "e", 0, "expiration of the upload in months. leave empty for no expiration")
 }
