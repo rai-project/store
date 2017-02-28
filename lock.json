@@ -1,10 +1,18 @@
 {
-    "memo": "a2997c309770e00b5af8121be7e2925d968ce9694478522fb411771e2864c5b6",
+    "memo": "41219aa2881373eb135d261d96190e74d30f29c4f1ec477b371150c57f3404e1",
     "projects": [
         {
             "name": "github.com/GeertJohan/go-sourcepath",
             "branch": "master",
             "revision": "83e8b8723a9bf39481216e80575f4854c63ece4a",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/Microsoft/go-winio",
+            "version": "v0.3.8",
+            "revision": "fff283ad5116362ca252298cfc9b95828956d85d",
             "packages": [
                 "."
             ]
@@ -66,6 +74,29 @@
             "revision": "346938d642f2ec3594ed81d874461961cd0faa76",
             "packages": [
                 "spew"
+            ]
+        },
+        {
+            "name": "github.com/docker/docker",
+            "branch": "master",
+            "revision": "40532143c2c4cf1359fd8484789b81c1f1f59d98",
+            "packages": [
+                "pkg/archive",
+                "pkg/fileutils",
+                "pkg/idtools",
+                "pkg/ioutils",
+                "pkg/longpath",
+                "pkg/pools",
+                "pkg/promise",
+                "pkg/system"
+            ]
+        },
+        {
+            "name": "github.com/docker/go-units",
+            "branch": "master",
+            "revision": "0dadbb0345b35ec7ef35e228dabb8de89a65bf52",
+            "packages": [
+                "."
             ]
         },
         {
@@ -206,6 +237,15 @@
             ]
         },
         {
+            "name": "github.com/opencontainers/runc",
+            "version": "v0.1.1",
+            "revision": "baf6536d6259209c3edfa2b22237af82942d3dfa",
+            "packages": [
+                "libcontainer/system",
+                "libcontainer/user"
+            ]
+        },
+        {
             "name": "github.com/pelletier/go-buffruneio",
             "branch": "master",
             "revision": "df1e16fde7fc330a0ca68167c23bf7ed6ac31d6d",
@@ -230,9 +270,17 @@
             ]
         },
         {
+            "name": "github.com/rai-project/archive",
+            "branch": "master",
+            "revision": "19dada667ac2043bca113392f79bee7a50f86c85",
+            "packages": [
+                "."
+            ]
+        },
+        {
             "name": "github.com/rai-project/aws",
             "branch": "master",
-            "revision": "72e45597b74b64419bcf7cc8b5399c34608538cf",
+            "revision": "e421a40dfb1346e12f9ec6f601c1791ec910d11c",
             "packages": [
                 "."
             ]
@@ -240,7 +288,7 @@
         {
             "name": "github.com/rai-project/config",
             "branch": "master",
-            "revision": "aaa7c06b6f064cba801824391bc4799ea95180ac",
+            "revision": "8293cb9dd588767842c0ced3b843a9a4833319c0",
             "packages": [
                 "."
             ]
@@ -248,7 +296,7 @@
         {
             "name": "github.com/rai-project/godotenv",
             "branch": "master",
-            "revision": "49a98d71a654e5f90239723ae80518a1e234bdd5",
+            "revision": "fc0d48a0f2677e776978720e024b97e74ccc7787",
             "packages": [
                 "."
             ]
@@ -256,7 +304,7 @@
         {
             "name": "github.com/rai-project/logger",
             "branch": "master",
-            "revision": "03464c07fcdd71ef8f4f86106a93901aa6272de5",
+            "revision": "70fc00a46f774bce2aa2dc9c9fcf68ef18df06e5",
             "packages": [
                 "."
             ]
@@ -264,7 +312,7 @@
         {
             "name": "github.com/rai-project/uuid",
             "branch": "master",
-            "revision": "3d7dffa61a8cdf7eae67c953c2f6aad1210ce8eb",
+            "revision": "e7b63ad434089aeb165eaaef7b6a8dd3ab35dbf1",
             "packages": [
                 "."
             ]
@@ -272,7 +320,7 @@
         {
             "name": "github.com/rai-project/vipertags",
             "branch": "master",
-            "revision": "c548926ed2e6b30c7bd8020849e386ea9d4d15c4",
+            "revision": "f8d2cd5254594a8c2f86677ccd6f5eb3890edae2",
             "packages": [
                 "."
             ]
@@ -373,7 +421,8 @@
             "branch": "master",
             "revision": "075e574b89e4c2d22f2286a7e2b919519c6f3547",
             "packages": [
-                "unix"
+                "unix",
+                "windows"
             ]
         },
         {
