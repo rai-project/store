@@ -58,6 +58,10 @@ func New(iopts ...store.Option) (*s3Client, error) {
 	}, nil
 }
 
+func (s *s3Client) Options() store.Options {
+	return s.opts
+}
+
 func (*s3Client) Name() string {
 	return "S3"
 }

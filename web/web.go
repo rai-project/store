@@ -2,18 +2,17 @@ package web
 
 import (
 	"github.com/labstack/echo"
-	log "github.com/rai-project/logger"
 	"github.com/rai-project/store"
 	"github.com/rai-project/store/s3"
 )
 
 func newStore(bucket string) (store.Store, error) {
 	var err error
-	pdfStore, err := s3.New(store.Bucket(bucket))
+	str, err := s3.New(store.Bucket(bucket))
 	if err != nil {
 		return nil, err
 	}
-	return pdfStore, err
+	return str, err
 }
 
 func storeMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
