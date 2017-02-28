@@ -1,5 +1,5 @@
 {
-    "memo": "41219aa2881373eb135d261d96190e74d30f29c4f1ec477b371150c57f3404e1",
+    "memo": "2b889771efb0ff230f9aad8a5e6b73d28a1b5a235b0e01a16524b58214e921e6",
     "projects": [
         {
             "name": "github.com/GeertJohan/go-sourcepath",
@@ -20,7 +20,7 @@
         {
             "name": "github.com/Sirupsen/logrus",
             "branch": "master",
-            "revision": "7f4b1adc791766938c29457bed0703fb9134421a",
+            "revision": "0208149b40d863d2c1a2f8fe5753096a9cf2cc8b",
             "packages": [
                 ".",
                 "hooks/syslog"
@@ -37,7 +37,7 @@
         {
             "name": "github.com/aws/aws-sdk-go",
             "branch": "master",
-            "revision": "2d3b3bc3aae6a09a9b194aa6eb71326fcbe2e918",
+            "revision": "78568b07950e5e7948496878fe99b9436add41d4",
             "packages": [
                 "aws",
                 "aws/awserr",
@@ -272,7 +272,7 @@
         {
             "name": "github.com/rai-project/archive",
             "branch": "master",
-            "revision": "19dada667ac2043bca113392f79bee7a50f86c85",
+            "revision": "3e31da4a1191fa566da4037b78e34ae33749b637",
             "packages": [
                 "."
             ]
@@ -280,7 +280,7 @@
         {
             "name": "github.com/rai-project/aws",
             "branch": "master",
-            "revision": "e421a40dfb1346e12f9ec6f601c1791ec910d11c",
+            "revision": "96808db846c4272ac1b640a3b5683567f39a93c6",
             "packages": [
                 "."
             ]
@@ -288,7 +288,7 @@
         {
             "name": "github.com/rai-project/config",
             "branch": "master",
-            "revision": "8293cb9dd588767842c0ced3b843a9a4833319c0",
+            "revision": "424df0fa1a84f46fb8bceaa35aee107264c312d7",
             "packages": [
                 "."
             ]
@@ -304,7 +304,7 @@
         {
             "name": "github.com/rai-project/logger",
             "branch": "master",
-            "revision": "70fc00a46f774bce2aa2dc9c9fcf68ef18df06e5",
+            "revision": "f3550ed1766e0e411de5fe268f75d438c420a3c2",
             "packages": [
                 "."
             ]
@@ -320,7 +320,7 @@
         {
             "name": "github.com/rai-project/vipertags",
             "branch": "master",
-            "revision": "f8d2cd5254594a8c2f86677ccd6f5eb3890edae2",
+            "revision": "f04deba4d94d299a67c81c57d938d0e30a301cbe",
             "packages": [
                 "."
             ]
