@@ -28,12 +28,13 @@ func put(c echo.Context) error {
 	defer src.Close()
 
 	id := uuid.NewV4()
-	if err := store.UploadFrom(src, id); err != nil {
+	key, err := store.UploadFrom(src, id)
+	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{
 			"error": err.Error(),
 		})
 	}
 	return c.JSON(http.StatusOK, map[string]string{
-		"id": id,
+		"id": key,
 	})
 }
