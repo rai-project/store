@@ -21,7 +21,7 @@ type s3Client struct {
 	opts       store.Options
 }
 
-func New(iopts ...store.Option) (*s3Client, error) {
+func New(iopts ...store.Option) (store.Store, error) {
 	s3Opts := options{}
 	opts := store.Options{
 		BaseURL: Config.BaseURL,
