@@ -9,5 +9,6 @@ type Store interface {
 	Download(target string, key string, opts ...DownloadOption) error
 	DownloadTo(writer io.WriterAt, key string, opts ...DownloadOption) error
 	List(opts ...ListOption) ([]string, error)
+	Delete(key string, opts ...DeleteOption) error
 	Name() string
 }
