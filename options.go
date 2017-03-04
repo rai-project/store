@@ -48,3 +48,9 @@ func Max(m int64) ListOption {
 		o.Max = m
 	}
 }
+
+type DeleteOption func(*ListOptions)
+
+type DeleteOptions struct {
+	Context context.Context
+}
