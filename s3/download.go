@@ -32,8 +32,10 @@ func (s *s3Client) DownloadTo(writer io.WriterAt, key0 string, opts ...store.Dow
 		o(&options)
 	}
 
-	key0 = strings.TrimLeft(key0, s.opts.BaseURL)
+	prefix := s.opts.BaseURL + "/" + s.opts.Bucket + "/"
+	key0 = strings.TrimPrefix(key0, prefix)
 	key, err := url.QueryUnescape(key0)
+
 	if err != nil {
 		log.WithField("key", key0).Error("Failed to unescape ", key0)
 		key = key0
