@@ -3,10 +3,12 @@ package s3
 import (
 	"context"
 
+	azaws "github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 	"github.com/rai-project/aws"
+	"github.com/rai-project/config"
 	"github.com/rai-project/store"
 )
 
@@ -45,7 +47,12 @@ func New(iopts ...store.Option) (store.Store, error) {
 		}
 	}
 
-	client := s3.New(sess)
+	conf := azaws.NewConfig().WithEndpoint(opts.BaseURL)
+	if config.IsVerbose || config.IsDebug {
+		conf = conf.WithCredentialsChainVerboseErrors(true).WithLogger(log)
+	}
+
+	client := s3.New(sess, conf)
 	uploader := s3manager.NewUploader(sess)
 	downloader := s3manager.NewDownloader(sess)
 
