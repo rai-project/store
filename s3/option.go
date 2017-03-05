@@ -4,7 +4,14 @@ import (
 	"context"
 	"time"
 
+	"reflect"
+
+	"fmt"
+
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/fatih/structs"
+	"github.com/pkg/errors"
 	"github.com/rai-project/store"
 )
 
@@ -18,9 +25,43 @@ const (
 	sessionKey       = "github.com/rai-project/store/s3/session"
 )
 
-func Metadata(m map[string]*string) store.UploadOption {
+func toMapPtr(m interface{}) (map[string]*string, error) {
+	switch m.(type) {
+	case map[string]*string:
+		return m.(map[string]*string), nil
+	case map[string]string:
+		out := map[string]*string{}
+		for k, v := range m.(map[string]string) {
+			out[k] = aws.String(v)
+		}
+		return out, nil
+	case map[string]interface{}:
+		out := map[string]*string{}
+		for k, v := range m.(map[string]interface{}) {
+			g := fmt.Sprint(v)
+			out[k] = aws.String(g)
+		}
+		return out, nil
+	default:
+		r := reflect.ValueOf(m)
+		if r.Kind() == reflect.Ptr {
+			r = r.Elem()
+		}
+		if r.Kind() != reflect.Struct {
+			return map[string]*string{}, errors.Errorf("input %v must be a map or a struct", m)
+		}
+		return toMapPtr(structs.Map(m))
+	}
+}
+
+func Metadata(m interface{}) store.UploadOption {
 	return func(o *store.UploadOptions) {
-		o.Context = context.WithValue(o.Context, metadataKey, m)
+		v, err := toMapPtr(m)
+		if err != nil {
+			log.WithError(err).Error("invalid s3 metadata")
+			return
+		}
+		o.Context = context.WithValue(o.Context, metadataKey, v)
 	}
 }
 

@@ -108,13 +108,15 @@ func (s *s3Client) UploadFrom(reader io.Reader, key string, opts ...store.Upload
 		o(&options)
 	}
 
-	s.createBucket(s.opts.Bucket)
+	if err := s.createBucket(s.opts.Bucket); err != nil {
+		return "", err
+	}
 
 	if key == "" {
 		key = uuid.NewV4()
 	}
 
-	var expires *time.Time = nil
+	var expires *time.Time
 	if e, ok := options.Context.Value(lifetimeKey).(time.Duration); ok {
 		t := time.Now().Add(e)
 		expires = aws.Time(t)
@@ -128,12 +130,12 @@ func (s *s3Client) UploadFrom(reader io.Reader, key string, opts ...store.Upload
 		metadata = m
 	}
 
-	var acl *string = nil
+	var acl *string
 	if a, ok := options.Context.Value(aclKey).(string); ok {
 		acl = aws.String(a)
 	}
 
-	var mime *string = nil
+	var mime *string
 	if m, ok := options.Context.Value(mimetypeKey).(string); ok {
 		mime = aws.String(m)
 	}
