@@ -23,8 +23,9 @@ func (s *s3Client) createBucket(bucket string) error {
 	buckets, err := s.client.ListBuckets(nil)
 	if err != nil {
 		log.WithError(err).Error("Cannot list buckets")
-		return err
+		return errors.Wrap(err, "cannot list buckets")
 	}
+
 	// try to find existing bucket
 	for _, b := range buckets.Buckets {
 		if aws.StringValue(b.Name) == bucket {
@@ -41,7 +42,7 @@ func (s *s3Client) createBucket(bucket string) error {
 	if err != nil {
 		// Message from an error.
 		log.WithError(err).Error("Cannot create bucket " + bucket)
-		return err
+		return errors.Wrap(err, "cannot create bucket")
 	}
 	return nil
 }
