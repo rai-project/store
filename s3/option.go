@@ -2,6 +2,7 @@ package s3
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"time"
 
@@ -25,26 +26,18 @@ const (
 )
 
 func toStringPtr(m interface{}) *string {
-	// switch m := m.(type) {
-	// case bool, int64, int32, int16, int8, int, float64, float32:
-	// 	return toStringPtr(fmt.Sprint("%v", m))
-	// case string:
-	// 	return aws.String(m)
-	// default:
-	// 	r := reflect.ValueOf(m)
-	// 	if r.Kind() == reflect.Ptr {
-	// 		r = r.Elem()
-	// 	}
-	// 	if r.Kind() != reflect.Struct {
-	// 		return toStringPtr(fmt.Sprint("%v", m))
-	// 	}
-	// 	s, err := toMapPtr(structs.Map(m))
-	// 	if err != nil {
-	// 		return toStringPtr(fmt.Sprint("%v", m))
-	// 	}
-	// 	return s
-	// }
-	return aws.String(fmt.Sprint("%v", m))
+	switch m := m.(type) {
+	case bool, int64, int32, int16, int8, int, float64, float32:
+		return toStringPtr(fmt.Sprint("%v", m))
+	case string:
+		return aws.String(m)
+	default:
+		buf, err := json.Marshal(m)
+		if err != nil {
+			return toStringPtr(fmt.Sprint("%v", m))
+		}
+		return aws.String(string(buf))
+	}
 }
 
 func toMapPtr(m interface{}) (map[string]*string, error) {
