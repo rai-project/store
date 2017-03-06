@@ -3,7 +3,6 @@ package s3
 import (
 	"context"
 
-	azaws "github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
@@ -37,7 +36,7 @@ func New(iopts ...store.Option) (store.Store, error) {
 
 	var sess *session.Session
 	if s, ok := opts.Context.Value(sessionKey).(*session.Session); ok && s != nil {
-		sess = s
+		sess = s.Copy()
 	}
 	if sess == nil {
 		var err error
@@ -47,12 +46,13 @@ func New(iopts ...store.Option) (store.Store, error) {
 		}
 	}
 
-	conf := azaws.NewConfig().WithEndpoint(opts.BaseURL)
+	sess.Config.WithEndpoint(opts.BaseURL)
+
 	if config.IsVerbose || config.IsDebug {
-		conf = conf.WithCredentialsChainVerboseErrors(true).WithLogger(log)
+		sess.Config.WithCredentialsChainVerboseErrors(true).WithLogger(log)
 	}
 
-	client := s3.New(sess, conf)
+	client := s3.New(sess)
 	uploader := s3manager.NewUploader(sess)
 	downloader := s3manager.NewDownloader(sess)
 

@@ -33,7 +33,16 @@ func (s *s3Client) DownloadTo(writer io.WriterAt, key0 string, opts ...store.Dow
 	}
 
 	prefix := s.opts.BaseURL + "/" + s.opts.Bucket + "/"
-	key0 = strings.TrimPrefix(key0, prefix)
+	key0 = strings.TrimPrefix(
+		strings.TrimPrefix(
+			strings.TrimPrefix(
+				key0,
+				"http://",
+			),
+			"https://",
+		),
+		prefix,
+	)
 	key, err := url.QueryUnescape(key0)
 
 	if err != nil {
