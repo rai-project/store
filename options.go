@@ -25,7 +25,8 @@ func Bucket(s string) Option {
 }
 
 type UploadOptions struct {
-	Context context.Context
+	ContentType string
+	Context     context.Context
 }
 
 type UploadOption func(*UploadOptions)
