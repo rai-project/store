@@ -21,7 +21,7 @@ const (
 	expirationKey    = "github.com/rai-project/store/s3/expiration"
 	fileSizeLimitKey = "github.com/rai-project/store/s3/fileSizeLimit"
 	aclKey           = "github.com/rai-project/store/s3/acl"
-	mimetypeKey      = "github.com/rai-project/store/s3/mimetype"
+	contentTypeKey   = "github.com/rai-project/store/s3/contentType"
 	sessionKey       = "github.com/rai-project/store/s3/session"
 )
 
@@ -97,9 +97,9 @@ func FileSizeLimit(i int64) store.UploadOption {
 	}
 }
 
-func MimeType(s string) store.UploadOption {
+func ContentType(s string) store.UploadOption {
 	return func(o *store.UploadOptions) {
-		o.Context = context.WithValue(o.Context, mimetypeKey, s)
+		o.Context = context.WithValue(o.Context, contentTypeKey, s)
 	}
 }
 

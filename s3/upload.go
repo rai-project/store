@@ -54,13 +54,13 @@ func (s *s3Client) Upload(path string, key string, opts ...store.UploadOption) (
 	}
 
 	ext := filepath.Ext(path)
-	mimetype := mime.TypeByExtension(ext)
+	contentType := mime.TypeByExtension(ext)
 
 	options := store.UploadOptions{
 		Context: context.WithValue(
 			context.Background(),
-			mimetypeKey,
-			mimetype,
+			contentTypeKey,
+			contentType,
 		),
 	}
 
@@ -136,9 +136,9 @@ func (s *s3Client) UploadFrom(reader io.Reader, key string, opts ...store.Upload
 		acl = aws.String(a)
 	}
 
-	var mime *string
-	if m, ok := options.Context.Value(mimetypeKey).(string); ok {
-		mime = aws.String(m)
+	var contentType *string
+	if m, ok := options.Context.Value(contentTypeKey).(string); ok {
+		contentType = aws.String(m)
 	}
 
 	out, err := s.uploader.Upload(&s3manager.UploadInput{
@@ -147,7 +147,7 @@ func (s *s3Client) UploadFrom(reader io.Reader, key string, opts ...store.Upload
 		Bucket:      aws.String(s.opts.Bucket),
 		Key:         aws.String(key),
 		Expires:     expires,
-		ContentType: mime,
+		ContentType: contentType,
 		Metadata:    metadata,
 	})
 	if err != nil {
