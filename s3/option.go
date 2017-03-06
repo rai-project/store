@@ -2,11 +2,10 @@ package s3
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"reflect"
-
-	"fmt"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -25,21 +24,43 @@ const (
 	sessionKey       = "github.com/rai-project/store/s3/session"
 )
 
+func toStringPtr(m interface{}) *string {
+	// switch m := m.(type) {
+	// case bool, int64, int32, int16, int8, int, float64, float32:
+	// 	return toStringPtr(fmt.Sprint("%v", m))
+	// case string:
+	// 	return aws.String(m)
+	// default:
+	// 	r := reflect.ValueOf(m)
+	// 	if r.Kind() == reflect.Ptr {
+	// 		r = r.Elem()
+	// 	}
+	// 	if r.Kind() != reflect.Struct {
+	// 		return toStringPtr(fmt.Sprint("%v", m))
+	// 	}
+	// 	s, err := toMapPtr(structs.Map(m))
+	// 	if err != nil {
+	// 		return toStringPtr(fmt.Sprint("%v", m))
+	// 	}
+	// 	return s
+	// }
+	return aws.String(fmt.Sprint("%v", m))
+}
+
 func toMapPtr(m interface{}) (map[string]*string, error) {
-	switch m.(type) {
+	switch m := m.(type) {
 	case map[string]*string:
-		return m.(map[string]*string), nil
+		return m, nil
 	case map[string]string:
 		out := map[string]*string{}
-		for k, v := range m.(map[string]string) {
-			out[k] = aws.String(v)
+		for k, v := range m {
+			out[k] = toStringPtr(v)
 		}
 		return out, nil
 	case map[string]interface{}:
 		out := map[string]*string{}
-		for k, v := range m.(map[string]interface{}) {
-			g := fmt.Sprint(v)
-			out[k] = aws.String(g)
+		for k, v := range m {
+			out[k] = toStringPtr(v)
 		}
 		return out, nil
 	default:
