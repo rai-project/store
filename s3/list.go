@@ -2,7 +2,6 @@ package s3
 
 import (
 	"context"
-	"math"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/s3"
@@ -15,7 +14,7 @@ var (
 
 func (s *s3Client) List(opts ...store.ListOption) ([]string, error) {
 	options := store.ListOptions{
-		Max:     math.MinInt64,
+		Max:     int64(DefaultListMax),
 		Context: context.Background(),
 	}
 
