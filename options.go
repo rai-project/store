@@ -36,6 +36,12 @@ type DownloadOptions struct {
 
 type DownloadOption func(*DownloadOptions)
 
+type GetOptions struct {
+	Context context.Context
+}
+
+type GetOption func(*GetOptions)
+
 type ListOptions struct {
 	Max     int64
 	Context context.Context
