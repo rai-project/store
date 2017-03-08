@@ -1,8 +1,6 @@
 package s3
 
 import (
-	"context"
-
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
@@ -19,19 +17,15 @@ type s3Client struct {
 	uploader   *s3manager.Uploader
 	downloader *s3manager.Downloader
 	s3Opts     options
-	opts       store.Options
+	opts       *store.Options
 }
 
 func New(iopts ...store.Option) (store.Store, error) {
 	s3Opts := options{}
-	opts := store.Options{
-		BaseURL: Config.BaseURL,
-		Bucket:  Config.Bucket,
-		Context: context.Background(),
-	}
+	opts := NewOptions()
 
 	for _, o := range iopts {
-		o(&opts)
+		o(opts)
 	}
 
 	var sess *session.Session
@@ -66,7 +60,7 @@ func New(iopts ...store.Option) (store.Store, error) {
 }
 
 func (s *s3Client) Options() store.Options {
-	return s.opts
+	return *s.opts
 }
 
 func (*s3Client) Name() string {

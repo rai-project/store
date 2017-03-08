@@ -25,6 +25,14 @@ const (
 	sessionKey       = "github.com/rai-project/store/s3/session"
 )
 
+func NewOptions() *store.Options {
+	return &store.Options{
+		BaseURL: Config.BaseURL,
+		Bucket:  Config.Bucket,
+		Context: context.Background(),
+	}
+}
+
 func toStringPtr(m interface{}) *string {
 	switch m := m.(type) {
 	case bool, int64, int32, int16, int8, int, float64, float32:
