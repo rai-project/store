@@ -34,4 +34,5 @@ func Init(api *echo.Group) {
 	store.GET("/list", list)
 	store.POST("/upload", put)
 	store.GET("/download/:key", get)
+	store.GET("/get/:key", get)
 }
