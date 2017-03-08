@@ -5,7 +5,6 @@ import (
 	"io"
 	"net/url"
 	"os"
-	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/s3"
@@ -33,18 +32,9 @@ func (s *s3Client) DownloadTo(writer io.WriterAt, key0 string, opts ...store.Dow
 	}
 
 	prefix := s.opts.BaseURL + "/" + s.opts.Bucket + "/"
-	key0 = strings.TrimPrefix(
-		strings.TrimPrefix(
-			strings.TrimPrefix(
-				key0,
-				"http://",
-			),
-			"https://",
-		),
-		prefix,
-	)
-	key, err := url.QueryUnescape(key0)
+	key0 = cleanupKey(key0, prefix)
 
+	key, err := url.QueryUnescape(key0)
 	if err != nil {
 		log.WithField("key", key0).Error("Failed to unescape ", key0)
 		key = key0
