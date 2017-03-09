@@ -9,7 +9,13 @@
         "github.com/aws/aws-sdk-go": {
             "branch": "master"
         },
+        "github.com/cheggaaa/pb": {
+            "branch": "master"
+        },
         "github.com/dustin/go-humanize": {
+            "branch": "master"
+        },
+        "github.com/fatih/structs": {
             "branch": "master"
         },
         "github.com/k0kubun/pp": {

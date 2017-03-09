@@ -5,14 +5,18 @@ import (
 	"io"
 	"mime"
 	"os"
+	"runtime"
 	"time"
 
 	"path/filepath"
+
+	"bytes"
 
 	"github.com/Unknwon/com"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
+	"github.com/cheggaaa/pb"
 	humanize "github.com/dustin/go-humanize"
 	"github.com/pkg/errors"
 	"github.com/rai-project/store"
@@ -45,6 +49,37 @@ func (s *s3Client) createBucket(bucket string) error {
 		return errors.Wrap(err, "cannot create bucket")
 	}
 	return nil
+}
+
+func newProgress(output io.Writer, bytes int64) *pb.ProgressBar {
+	// get the new original progress bar.
+	bar := pb.New64(bytes)
+
+	// Set new human friendly print units.
+	bar.SetUnits(pb.U_BYTES)
+
+	// Set output to be stdout
+	bar.Output = output
+
+	// Show current speed is true.
+	bar.ShowSpeed = true
+
+	// Refresh rate for progress bar is set to 100 milliseconds.
+	bar.SetRefreshRate(time.Millisecond * 100)
+
+	// Use different unicodes for Linux, OS X and Windows.
+	switch runtime.GOOS {
+	case "linux":
+		// Need to add '\x00' as delimiter for unicode characters.
+		bar.Format("┃\x00▓\x00█\x00░\x00┃")
+	case "darwin":
+		// Need to add '\x00' as delimiter for unicode characters.
+		bar.Format(" \x00▓\x00 \x00░\x00 ")
+	default:
+		// Default to non unicode characters.
+		bar.Format("[=> ]")
+	}
+	return bar
 }
 
 func (s *s3Client) Upload(path string, key string, opts ...store.UploadOption) (string, error) {
@@ -91,6 +126,16 @@ func (s *s3Client) Upload(path string, key string, opts ...store.UploadOption) (
 		return "", errors.Wrap(err, "Failed to read file during s3 upload.")
 	}
 	defer file.Close()
+
+	if options.ProgressOutput != nil && options.Progress == nil {
+		stats, err := file.Stat()
+		if err == nil {
+			opts = append(
+				opts,
+				store.UploadProgress(newProgress(options.ProgressOutput, stats.Size())),
+			)
+		}
+	}
 
 	return s.UploadFrom(file, key, opts...)
 }
@@ -141,6 +186,23 @@ func (s *s3Client) UploadFrom(reader io.Reader, key string, opts ...store.Upload
 		contentType = aws.String(m)
 	}
 
+	progress := options.Progress
+	if options.ProgressOutput != nil && progress == nil {
+		buf := new(bytes.Buffer)
+		size, err := buf.ReadFrom(reader)
+		if err != nil {
+			return "", errors.Wrap(err, "cannot determine size of reader")
+		}
+		progress = newProgress(options.ProgressOutput, size)
+		reader = progress.NewProxyReader(buf)
+	} else if progress != nil {
+		reader = progress.NewProxyReader(reader)
+	}
+
+	if progress != nil {
+		progress.Start()
+	}
+
 	out, err := s.uploader.Upload(&s3manager.UploadInput{
 		Body:        reader,
 		ACL:         acl,
@@ -153,6 +215,15 @@ func (s *s3Client) UploadFrom(reader io.Reader, key string, opts ...store.Upload
 	if err != nil {
 		return "", errors.Wrapf(err, "Failed to upload data to %s/%s\n", s.opts.Bucket, key)
 	}
+
+	if progress != nil {
+		if options.ProgressFinishMessage == "" {
+			progress.Finish()
+		} else {
+			progress.FinishPrint(options.ProgressFinishMessage)
+		}
+	}
+
 	defer log.Debugf("Successfully created bucket %s and uploaded data with key %s\n", s.opts.Bucket, key)
 	return out.Location, nil
 }

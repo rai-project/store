@@ -2,6 +2,9 @@ package store
 
 import (
 	"context"
+	"io"
+
+	"github.com/cheggaaa/pb"
 )
 
 type Options struct {
@@ -25,10 +28,31 @@ func Bucket(s string) Option {
 }
 
 type UploadOptions struct {
-	Context context.Context
+	Progress              *pb.ProgressBar
+	ProgressOutput        io.Writer
+	ProgressFinishMessage string
+	Context               context.Context
 }
 
 type UploadOption func(*UploadOptions)
+
+func UploadProgress(p *pb.ProgressBar) UploadOption {
+	return func(opts *UploadOptions) {
+		opts.Progress = p
+	}
+}
+
+func UploadProgressOutput(out io.Writer) UploadOption {
+	return func(opts *UploadOptions) {
+		opts.ProgressOutput = out
+	}
+}
+
+func UploadProgressFinishMessage(s string) UploadOption {
+	return func(opts *UploadOptions) {
+		opts.ProgressFinishMessage = s
+	}
+}
 
 type DownloadOptions struct {
 	Context context.Context

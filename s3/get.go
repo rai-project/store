@@ -28,7 +28,6 @@ func (s *s3Client) Get(key0 string, opts ...store.GetOption) ([]byte, error) {
 }
 
 func (s *s3Client) GetReader(key0 string, opts ...store.GetOption) (io.ReadCloser, error) {
-
 	options := store.GetOptions{
 		Context: context.Background(),
 	}
