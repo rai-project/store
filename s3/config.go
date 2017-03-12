@@ -1,6 +1,8 @@
 package s3
 
 import (
+	"strings"
+
 	"github.com/k0kubun/pp"
 	"github.com/rai-project/config"
 	"github.com/rai-project/vipertags"
@@ -26,6 +28,9 @@ func (*s3Config) SetDefaults() {
 
 func (a *s3Config) Read() {
 	vipertags.Fill(a)
+	if !strings.HasPrefix(a.BaseURL, "http://") && !strings.HasPrefix(a.BaseURL, "https://") {
+		a.BaseURL = "http://" + a.BaseURL
+	}
 }
 
 func (c *s3Config) String() string {

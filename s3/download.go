@@ -32,7 +32,10 @@ func (s *s3Client) DownloadTo(writer io.WriterAt, key0 string, opts ...store.Dow
 	}
 
 	prefix := s.opts.BaseURL + "/" + s.opts.Bucket + "/"
-	key0 = cleanupKey(key0, prefix)
+	key0, err := cleanupKey(key0, prefix)
+	if err != nil {
+		return err
+	}
 
 	key, err := url.QueryUnescape(key0)
 	if err != nil {

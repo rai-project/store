@@ -37,7 +37,10 @@ func (s *s3Client) GetReader(key0 string, opts ...store.GetOption) (io.ReadClose
 	}
 
 	prefix := s.opts.BaseURL + "/" + s.opts.Bucket + "/"
-	key0 = cleanupKey(key0, prefix)
+	key0, err := cleanupKey(key0, prefix)
+	if err != nil {
+		return nil, err
+	}
 
 	key, err := url.QueryUnescape(key0)
 	if err != nil {
