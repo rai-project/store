@@ -20,7 +20,7 @@ func (l *logwrapper) Log(args ...interface{}) {
 }
 
 func init() {
-	config.OnInit(func() {
+	config.AfterInit(func() {
 		log = &logwrapper{
 			Entry: logger.New().WithField("pkg", "s3-store"),
 		}

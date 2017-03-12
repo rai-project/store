@@ -11,7 +11,7 @@ var (
 )
 
 func init() {
-	config.OnInit(func() {
+	config.AfterInit(func() {
 		log = logger.New().WithField("pkg", "store/web")
 	})
 }
