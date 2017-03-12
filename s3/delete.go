@@ -31,6 +31,9 @@ func (s *s3Client) Delete(key0 string, opts ...store.DeleteOption) error {
 	)
 
 	key, err := url.QueryUnescape(key0)
+	if err != nil {
+		key = key0
+	}
 
 	_, err = s.client.DeleteObject(&s3.DeleteObjectInput{
 		Bucket: aws.String(s.opts.Bucket),
