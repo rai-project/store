@@ -28,3 +28,6 @@ import:
 - package: github.com/rai-project/uuid
 - package: github.com/rai-project/vipertags
 - package: github.com/spf13/cobra
+  version: master
+  subpackages:
+  - doc
