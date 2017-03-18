@@ -31,6 +31,7 @@ func (a *s3Config) SetDefaults() {
 }
 
 func (a *s3Config) Read() {
+	defer close(a.done)
 	vipertags.Fill(a)
 	if !strings.HasPrefix(a.BaseURL, "http://") && !strings.HasPrefix(a.BaseURL, "https://") {
 		a.BaseURL = "http://" + a.BaseURL

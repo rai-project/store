@@ -3,6 +3,7 @@ package store
 import (
 	"context"
 	"io"
+	"strings"
 
 	"github.com/cheggaaa/pb"
 )
@@ -17,6 +18,9 @@ type Option func(*Options)
 
 func BaseURL(s string) Option {
 	return func(o *Options) {
+		if !strings.HasPrefix(s, "http://") && !strings.HasPrefix(s, "https://") {
+			s = "http://" + s
+		}
 		o.BaseURL = s
 	}
 }
