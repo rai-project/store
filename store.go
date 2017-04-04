@@ -1,6 +1,8 @@
 package store
 
-import "io"
+import (
+	"io"
+)
 
 type Store interface {
 	Options() Options
@@ -9,6 +11,7 @@ type Store interface {
 	Download(target string, key string, opts ...DownloadOption) error
 	DownloadTo(writer io.WriterAt, key string, opts ...DownloadOption) error
 	Get(key string, opts ...GetOption) ([]byte, error)
+	GetReader(key0 string, opts ...GetOption) (io.ReadCloser, error)
 	List(opts ...ListOption) ([]string, error)
 	Delete(key string, opts ...DeleteOption) error
 	Name() string
