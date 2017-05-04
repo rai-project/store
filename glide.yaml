@@ -5,20 +5,21 @@ import:
 - package: github.com/Unknwon/com
   version: ~1.0.0
 - package: github.com/aws/aws-sdk-go
-  version: ~1.8.8
+  version: ~1.8.19
   subpackages:
   - aws
   - aws/session
   - service/s3
   - service/s3/s3manager
 - package: github.com/cheggaaa/pb
-  version: ~1.0.9
+  version: ~1.0.13
 - package: github.com/dustin/go-humanize
 - package: github.com/fatih/structs
+  version: ~1.0.0
 - package: github.com/k0kubun/pp
   version: ~2.3.0
 - package: github.com/labstack/echo
-  version: ~3.1.0-rc.1
+  version: ~3.1.0
 - package: github.com/pkg/errors
   version: ~0.8.0
 - package: github.com/rai-project/archive
@@ -28,6 +29,3 @@ import:
 - package: github.com/rai-project/uuid
 - package: github.com/rai-project/vipertags
 - package: github.com/spf13/cobra
-  version: master
-  subpackages:
-  - doc
