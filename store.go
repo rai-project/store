@@ -15,4 +15,5 @@ type Store interface {
 	List(opts ...ListOption) ([]string, error)
 	Delete(key string, opts ...DeleteOption) error
 	Name() string
+	Close() error
 }

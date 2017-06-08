@@ -1,4 +1,4 @@
-package s3
+package bolt
 
 import (
 	"github.com/Sirupsen/logrus"
@@ -22,7 +22,7 @@ func (l *logwrapper) Log(args ...interface{}) {
 func init() {
 	config.AfterInit(func() {
 		log = &logwrapper{
-			Entry: logger.New().WithField("pkg", "store/s3"),
+			Entry: logger.New().WithField("pkg", "store/bolt"),
 		}
 	})
 }

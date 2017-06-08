@@ -66,3 +66,7 @@ func (s *s3Client) Options() store.Options {
 func (*s3Client) Name() string {
 	return "S3"
 }
+
+func (*s3Client) Close() error {
+	return nil
+}
