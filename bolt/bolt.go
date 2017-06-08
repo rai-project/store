@@ -2,15 +2,18 @@ package bolt
 
 import (
 	"bytes"
-	"errors"
 	"io"
 	"io/ioutil"
+	"os"
+	"path/filepath"
 
+	"github.com/Unknwon/com"
 	"github.com/boltdb/bolt"
+	"github.com/pkg/errors"
 	"github.com/rai-project/store"
 )
 
-type handler struct {
+type Handler struct {
 	db     *bolt.DB
 	opts   *store.Options
 	isOpen bool
@@ -23,10 +26,14 @@ func New(iopts ...store.Option) (store.Store, error) {
 		o(opts)
 	}
 
-	basePath, ok := opts.Context.Value(opts.Context).(string)
+	basePath, ok := opts.Context.Value(basePathKey).(string)
 	if !ok || basePath == "" {
 		return nil, errors.New("base path was not set")
 	}
+	if com.IsDir(basePath) {
+		basePath = filepath.Join(basePath, "bolt.db")
+	}
+
 	bucket := opts.Bucket
 	if bucket == "" {
 		return nil, errors.New("bolt bucket was not set")
@@ -49,17 +56,18 @@ func New(iopts ...store.Option) (store.Store, error) {
 		return nil, err
 	}
 
-	return &handler{
+	return &Handler{
 		db:     db,
+		opts:   opts,
 		isOpen: true,
 	}, nil
 }
 
-func (h *handler) Name() string {
+func (h *Handler) Name() string {
 	return "Bolt"
 }
 
-func (h *handler) Close() error {
+func (h *Handler) Close() error {
 	if !h.isOpen {
 		return nil
 	}
@@ -69,7 +77,7 @@ func (h *handler) Close() error {
 	return h.db.Close()
 }
 
-func (h *handler) Delete(key string, d ...store.DeleteOption) error {
+func (h *Handler) Delete(key string, d ...store.DeleteOption) error {
 	if !h.isOpen {
 		return errors.New("bolt database is not open")
 	}
@@ -83,25 +91,25 @@ func (h *handler) Delete(key string, d ...store.DeleteOption) error {
 	return err
 }
 
-func (h *handler) Download(s string, s1 string, d ...store.DownloadOption) error {
+func (h *Handler) Download(s string, s1 string, d ...store.DownloadOption) error {
 	if !h.isOpen {
 		return errors.New("bolt database is not open")
 	}
 	db := h.db
 	_ = db
-	panic(errors.New("*handler.Download not implemented"))
+	panic(errors.New("*Handler.Download not implemented"))
 }
 
-func (h *handler) DownloadTo(w io.WriterAt, s string, d ...store.DownloadOption) error {
+func (h *Handler) DownloadTo(w io.WriterAt, s string, d ...store.DownloadOption) error {
 	if !h.isOpen {
 		return errors.New("bolt database is not open")
 	}
 	db := h.db
 	_ = db
-	panic(errors.New("*handler.DownloadTo not implemented"))
+	panic(errors.New("*Handler.DownloadTo not implemented"))
 }
 
-func (h *handler) Get(key string, g ...store.GetOption) ([]byte, error) {
+func (h *Handler) Get(key string, g ...store.GetOption) ([]byte, error) {
 	if !h.isOpen {
 		return nil, errors.New("bolt database is not open")
 	}
@@ -124,7 +132,7 @@ func (h *handler) Get(key string, g ...store.GetOption) ([]byte, error) {
 	return value, nil
 }
 
-func (h *handler) GetReader(key string, g ...store.GetOption) (io.ReadCloser, error) {
+func (h *Handler) GetReader(key string, g ...store.GetOption) (io.ReadCloser, error) {
 	if !h.isOpen {
 		return nil, errors.New("bolt database is not open")
 	}
@@ -135,7 +143,7 @@ func (h *handler) GetReader(key string, g ...store.GetOption) (io.ReadCloser, er
 	return ioutil.NopCloser(bytes.NewBuffer(buf)), nil
 }
 
-func (h *handler) List(l ...store.ListOption) ([]string, error) {
+func (h *Handler) List(l ...store.ListOption) ([]string, error) {
 	if !h.isOpen {
 		return nil, errors.New("bolt database is not open")
 	}
@@ -166,18 +174,25 @@ func (h *handler) List(l ...store.ListOption) ([]string, error) {
 	return keys, nil
 }
 
-func (h *handler) Options() store.Options {
+func (h *Handler) Options() store.Options {
 	return *h.opts
 }
 
-func (h *handler) Upload(s string, key string, u ...store.UploadOption) (string, error) {
+func (h *Handler) Upload(path string, key string, u ...store.UploadOption) (string, error) {
 	if !h.isOpen {
 		return "", errors.New("bolt database is not open")
 	}
-	return h.UploadFrom(bytes.NewBufferString(s), key, u...)
+
+	file, err := os.Open(path)
+	if err != nil {
+		return "", errors.Wrap(err, "Failed to read file during bolt upload.")
+	}
+	defer file.Close()
+
+	return h.UploadFrom(file, key, u...)
 }
 
-func (h *handler) UploadFrom(r io.Reader, key string, u ...store.UploadOption) (string, error) {
+func (h *Handler) UploadFrom(r io.Reader, key string, u ...store.UploadOption) (string, error) {
 	if !h.isOpen {
 		return "", errors.New("bolt database is not open")
 	}
