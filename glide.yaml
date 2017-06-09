@@ -1,13 +1,13 @@
 package: github.com/rai-project/store
 import:
 - package: github.com/sirupsen/logrus
-  version: ~1.0.0
+  version: ^1.0.0
 - package: github.com/Sirupsen/logrus
   repo: git@github.com:/sirupsen/logrus
   vcs: git
-  version: ~1.0.0
+  version: ^1.0.0
 - package: github.com/Unknwon/com
-  version: ~1.0.0
+  version: ^1.0.0
 - package: github.com/aws/aws-sdk-go
   version: ~1.8.30
   subpackages:
@@ -21,7 +21,7 @@ import:
   version: master
 - package: github.com/dustin/go-humanize
 - package: github.com/fatih/structs
-  version: ~1.0.0
+  version: ^1.0.0
 - package: github.com/k0kubun/pp
   version: ~2.3.0
 - package: github.com/labstack/echo
