@@ -30,7 +30,7 @@ import:
 - package: github.com/rai-project/uuid
 - package: github.com/rai-project/vipertags
 - package: github.com/sirupsen/logrus
-  version: ~1.0.2
+  version: ^1.0.0
 - package: github.com/spf13/afero
 - package: github.com/spf13/cobra
 - package: github.com/tus/tusd
