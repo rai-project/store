@@ -1,7 +1,7 @@
 package: github.com/rai-project/store
 import:
 - package: github.com/Unknwon/com
-  version: ~1.0.0
+  version: ^1.0.0
 - package: github.com/aws/aws-sdk-go
   version: ^1.10.35
   subpackages:
@@ -16,7 +16,7 @@ import:
   version: master
 - package: github.com/dustin/go-humanize
 - package: github.com/fatih/structs
-  version: ~1.0.0
+  version: ^1.0.0
 - package: github.com/k0kubun/pp
   version: ~2.3.0
 - package: github.com/labstack/echo
@@ -42,7 +42,7 @@ import:
 testImport:
 - package: github.com/GeertJohan/go-sourcepath
 - package: github.com/golang/mock
-  version: ~1.0.0
+  version: ^1.0.0
   subpackages:
   - gomock
 - package: github.com/stretchr/testify
