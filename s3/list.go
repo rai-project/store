@@ -22,10 +22,14 @@ func (s *s3Client) List(opts ...store.ListOption) ([]string, error) {
 		o(&options)
 	}
 
-	objs, err := s.client.ListObjects(&s3.ListObjectsInput{
+	os := &s3.ListObjectsInput{
 		Bucket:  aws.String(s.opts.Bucket),
 		MaxKeys: aws.Int64(options.Max),
-	})
+	}
+	if s, ok := options.Context.Value(prefixKey).(string); ok {
+		os.Prefix = aws.String(s)
+	}
+	objs, err := s.client.ListObjects(os)
 	if err != nil {
 		return nil, err
 	}

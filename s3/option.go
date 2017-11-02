@@ -23,6 +23,7 @@ const (
 	aclKey           = "github.com/rai-project/store/s3/acl"
 	contentTypeKey   = "github.com/rai-project/store/s3/contentType"
 	sessionKey       = "github.com/rai-project/store/s3/session"
+	prefixKey        = "github.com/rai-project/store/s3/prefix"
 )
 
 func NewOptions() *store.Options {
@@ -120,5 +121,11 @@ func ACL(acl string) store.UploadOption {
 func Session(s *session.Session) store.Option {
 	return func(o *store.Options) {
 		o.Context = context.WithValue(o.Context, sessionKey, s)
+	}
+}
+
+func Prefix(s string) store.ListOption {
+	return func(o *store.ListOptions) {
+		o.Context = context.WithValue(o.Context, prefixKey, s)
 	}
 }
