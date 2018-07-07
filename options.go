@@ -5,7 +5,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/cheggaaa/pb"
+	"gopkg.in/cheggaaa/pb.v1"
 )
 
 type Options struct {

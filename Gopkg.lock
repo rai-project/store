@@ -10,8 +10,8 @@
 [[projects]]
   name = "github.com/Microsoft/go-winio"
   packages = ["."]
-  revision = "7da180ee92d8bd8bb8c37fc560e673e6557c392f"
-  version = "v0.4.7"
+  revision = "67921128fb397dd80339870d2193d6b1e6856fd4"
+  version = "v0.4.8"
 
 [[projects]]
   name = "github.com/Unknwon/com"
@@ -61,8 +61,8 @@
     "service/s3/s3manager",
     "service/sts"
   ]
-  revision = "fde4ded7becdeae4d26bf1212916aabba79349b4"
-  version = "v1.14.12"
+  revision = "16cb9f62f8a8b7af4f38725567f5ce762e1d562b"
+  version = "v1.14.21"
 
 [[projects]]
   branch = "master"
@@ -77,16 +77,9 @@
   version = "v1.3.1"
 
 [[projects]]
-  name = "github.com/cheggaaa/pb"
-  packages = ["."]
-  revision = "2af8bbdea9e99e83b3ac400d8f6b6d1b8cbbf338"
-  version = "v1.0.25"
-
-[[projects]]
-  branch = "master"
   name = "github.com/containerd/continuity"
   packages = ["pathdriver"]
-  revision = "246e49050efdf45e8f17fbbcf1547ee376f9939e"
+  revision = "d3c23511c1bf5851696cba83143d9cbcd666869b"
 
 [[projects]]
   name = "github.com/coreos/etcd"
@@ -125,13 +118,12 @@
     "pkg/pools",
     "pkg/system"
   ]
-  revision = "093424bec097cdf51154255226cf999d6824633b"
+  revision = "ae1160b8d8dd0b877bb58226852422c63b7210ce"
 
 [[projects]]
   name = "github.com/docker/go-units"
   packages = ["."]
-  revision = "47565b4f722fb6ceae66b95f853feed578a4a51c"
-  version = "v0.3.3"
+  revision = "9e638d38cf6977a37a8ea0078f3ee75a7cdb2dd1"
 
 [[projects]]
   branch = "master"
@@ -281,8 +273,7 @@
     "libcontainer/system",
     "libcontainer/user"
   ]
-  revision = "baf6536d6259209c3edfa2b22237af82942d3dfa"
-  version = "v0.1.1"
+  revision = "ad0f5255060d36872be04de22f8731f38ef2d7b1"
 
 [[projects]]
   name = "github.com/pelletier/go-toml"
@@ -306,19 +297,19 @@
   branch = "master"
   name = "github.com/rai-project/archive"
   packages = ["."]
-  revision = "ac2ae4ea7f3c7f4e8a904123e26a4b68ef82fd3e"
+  revision = "624e908fb1a3c39ae2e1f1632047981a327836f1"
 
 [[projects]]
   branch = "master"
   name = "github.com/rai-project/aws"
   packages = ["."]
-  revision = "deb7e58459467392822a2822f2e193f9ccfdd68f"
+  revision = "9eea5368fb295cd4c9d508b23387e5b1ae86f5e9"
 
 [[projects]]
   branch = "master"
   name = "github.com/rai-project/config"
   packages = ["."]
-  revision = "c84109ab2515e922a25930ea437d20d2e86d1840"
+  revision = "b8a1f9848ca2a4288fa28f2f456ea4683069566a"
 
 [[projects]]
   branch = "master"
@@ -330,25 +321,25 @@
   branch = "master"
   name = "github.com/rai-project/logger"
   packages = ["."]
-  revision = "87ef1d21520e8fc2ba204a431318d27a6606ca0a"
+  revision = "127c980833b2e3f43e5cb8cfb669d9a8060a89ce"
 
 [[projects]]
   branch = "master"
   name = "github.com/rai-project/utils"
   packages = ["."]
-  revision = "1660f4e6c5178a88d71a942ca6e5a5796e035c4e"
+  revision = "7cc954f4f45db4d1af4ad4ff449accedc68f5774"
 
 [[projects]]
   branch = "master"
   name = "github.com/rai-project/uuid"
   packages = ["."]
-  revision = "9d1dfc0fdb4f216bcbe4349da0997301f1123e29"
+  revision = "4745e418073472528c60eb77ec47724a04b23fd8"
 
 [[projects]]
   branch = "master"
   name = "github.com/rai-project/vipertags"
   packages = ["."]
-  revision = "1b2055ebed224c84d28b34112454ba8b7cc4d491"
+  revision = "92806c8ec658b5bc4ef66f6e51f835937a9e616e"
 
 [[projects]]
   name = "github.com/sirupsen/logrus"
@@ -416,8 +407,7 @@
 [[projects]]
   name = "github.com/ugorji/go"
   packages = ["codec"]
-  revision = "b4c50a2b199d93b13dc15e78929cfb23bfdf21ab"
-  version = "v1.1.1"
+  revision = "bdcc60b419d136a85cdf2e7cbcac34b3f1cd6e57"
 
 [[projects]]
   branch = "master"
@@ -464,7 +454,7 @@
   branch = "master"
   name = "golang.org/x/net"
   packages = ["context"]
-  revision = "afe8f62b1d6bbd81f31868121a50b06d8188e1f9"
+  revision = "32a936f46389aa10549d60bd7833e54b01685d09"
 
 [[projects]]
   branch = "master"
@@ -473,7 +463,7 @@
     "unix",
     "windows"
   ]
-  revision = "ad87a3a340fa7f3bed189293fbfa7a9b7e021ae1"
+  revision = "3c6ecd8f22c6f40fbeec94c000a069d7d87c7624"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -495,6 +485,12 @@
   version = "v1.1.0"
 
 [[projects]]
+  name = "gopkg.in/cheggaaa/pb.v1"
+  packages = ["."]
+  revision = "2af8bbdea9e99e83b3ac400d8f6b6d1b8cbbf338"
+  version = "v1.0.25"
+
+[[projects]]
   name = "gopkg.in/yaml.v2"
   packages = ["."]
   revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
@@ -503,6 +499,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "a5274c2c15c15a456bbb209c3688db4c061c077353065c6be1a6e1c56cc5cde8"
+  inputs-digest = "343dd31b6dc280ddef67de4655c7e3eee1d777b4157a9629d2e54520b30af1be"
   solver-name = "gps-cdcl"
   solver-version = 1
