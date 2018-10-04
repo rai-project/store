@@ -43,7 +43,8 @@ func (s *s3Client) DownloadTo(writer io.WriterAt, key0 string, opts ...store.Dow
 		key = key0
 	}
 
-	_, err = s.downloader.Download(
+	_, err = s.downloader.DownloadWithContext(
+		options.Context,
 		writer,
 		&s3.GetObjectInput{
 			Bucket: aws.String(s.opts.Bucket),

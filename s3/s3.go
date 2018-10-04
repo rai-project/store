@@ -47,8 +47,8 @@ func New(iopts ...store.Option) (store.Store, error) {
 	}
 
 	client := s3.New(sess)
-	uploader := s3manager.NewUploader(sess)
-	downloader := s3manager.NewDownloader(sess)
+	uploader := s3manager.NewUploaderWithClient(client)
+	downloader := s3manager.NewDownloaderWithClient(client)
 
 	return &s3Client{
 		client:     client,
@@ -67,6 +67,6 @@ func (*s3Client) Name() string {
 	return "S3"
 }
 
-func (*s3Client) Close() error {
+func (c *s3Client) Close() error {
 	return nil
 }

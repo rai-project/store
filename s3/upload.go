@@ -203,15 +203,18 @@ func (s *s3Client) UploadFrom(reader io.Reader, key string, opts ...store.Upload
 		progress.Start()
 	}
 
-	out, err := s.uploader.Upload(&s3manager.UploadInput{
-		Body:        reader,
-		ACL:         acl,
-		Bucket:      aws.String(s.opts.Bucket),
-		Key:         aws.String(key),
-		Expires:     expires,
-		ContentType: contentType,
-		Metadata:    metadata,
-	})
+	out, err := s.uploader.UploadWithContext(
+		options.Context,
+		&s3manager.UploadInput{
+			Body:        reader,
+			ACL:         acl,
+			Bucket:      aws.String(s.opts.Bucket),
+			Key:         aws.String(key),
+			Expires:     expires,
+			ContentType: contentType,
+			Metadata:    metadata,
+		},
+	)
 	if err != nil {
 		return "", errors.Wrapf(err, "Failed to upload data to %s/%s\n", s.opts.Bucket, key)
 	}
