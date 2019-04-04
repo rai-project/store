@@ -2,9 +2,11 @@ package store
 
 import (
 	"context"
+	"encoding/json"
 	"io"
 	"strings"
 
+	"github.com/spf13/cast"
 	"gopkg.in/cheggaaa/pb.v1"
 )
 
@@ -59,13 +61,23 @@ func UploadProgressFinishMessage(s string) UploadOption {
 	}
 }
 
-func UploadMetadata(mp map[string]string) UploadOption {
+func UploadMetadata(mp map[string]interface{}) UploadOption {
 	return func(opts *UploadOptions) {
 		if opts.Metadata == nil {
 			opts.Metadata = map[string]string{}
 		}
 		for k, v := range mp {
-			opts.Metadata[k] = v
+			s, err := cast.ToStringE(v)
+			if err == nil {
+				opts.Metadata[k] = s
+				continue
+			}
+			bts, err := json.Marshal(v)
+			if err == nil {
+				opts.Metadata[k] = string(bts)
+				continue
+			}
+			opts.Metadata[k] = "<<INVALID_METADATA>>"
 		}
 	}
 }
