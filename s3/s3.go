@@ -29,7 +29,7 @@ func New(iopts ...store.Option) (store.Store, error) {
 	}
 
 	var sess *session.Session
-	if s, ok := opts.Context.Value(sessionKey).(*session.Session); ok && s != nil {
+	if s, ok := opts.Context.Value(sessionKey{}).(*session.Session); ok && s != nil {
 		sess = s.Copy()
 	}
 	if sess == nil {

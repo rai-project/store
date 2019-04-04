@@ -15,16 +15,13 @@ import (
 	"github.com/rai-project/store"
 )
 
-const (
-	metadataKey      = "github.com/rai-project/store/s3/metadata"
-	lifetimeKey      = "github.com/rai-project/store/s3/lifetime"
-	expirationKey    = "github.com/rai-project/store/s3/expiration"
-	fileSizeLimitKey = "github.com/rai-project/store/s3/fileSizeLimit"
-	aclKey           = "github.com/rai-project/store/s3/acl"
-	contentTypeKey   = "github.com/rai-project/store/s3/contentType"
-	sessionKey       = "github.com/rai-project/store/s3/session"
-	prefixKey        = "github.com/rai-project/store/s3/prefix"
-)
+type lifetimeKey struct{}
+type expirationKey struct{}
+type fileSizeLimitKey struct{}
+type aclKey struct{}
+type contentTypeKey struct{}
+type sessionKey struct{}
+type prefixKey struct{}
 
 func NewOptions() *store.Options {
 	return &store.Options{
@@ -77,55 +74,44 @@ func toMapPtr(m interface{}) (map[string]*string, error) {
 	}
 }
 
-func Metadata(m interface{}) store.UploadOption {
-	return func(o *store.UploadOptions) {
-		v, err := toMapPtr(m)
-		if err != nil {
-			log.WithError(err).Error("invalid s3 metadata")
-			return
-		}
-		o.Context = context.WithValue(o.Context, metadataKey, v)
-	}
-}
-
 func Expiration(t time.Time) store.UploadOption {
 	return func(o *store.UploadOptions) {
-		o.Context = context.WithValue(o.Context, expirationKey, t)
+		o.Context = context.WithValue(o.Context, expirationKey{}, t)
 	}
 }
 
 func Lifetime(t time.Duration) store.UploadOption {
 	return func(o *store.UploadOptions) {
-		o.Context = context.WithValue(o.Context, lifetimeKey, t)
+		o.Context = context.WithValue(o.Context, lifetimeKey{}, t)
 	}
 }
 
 func FileSizeLimit(i int64) store.UploadOption {
 	return func(o *store.UploadOptions) {
-		o.Context = context.WithValue(o.Context, fileSizeLimitKey, i)
+		o.Context = context.WithValue(o.Context, fileSizeLimitKey{}, i)
 	}
 }
 
 func ContentType(s string) store.UploadOption {
 	return func(o *store.UploadOptions) {
-		o.Context = context.WithValue(o.Context, contentTypeKey, s)
+		o.Context = context.WithValue(o.Context, contentTypeKey{}, s)
 	}
 }
 
 func ACL(acl string) store.UploadOption {
 	return func(o *store.UploadOptions) {
-		o.Context = context.WithValue(o.Context, aclKey, acl)
+		o.Context = context.WithValue(o.Context, aclKey{}, acl)
 	}
 }
 
 func Session(s *session.Session) store.Option {
 	return func(o *store.Options) {
-		o.Context = context.WithValue(o.Context, sessionKey, s)
+		o.Context = context.WithValue(o.Context, sessionKey{}, s)
 	}
 }
 
 func Prefix(s string) store.ListOption {
 	return func(o *store.ListOptions) {
-		o.Context = context.WithValue(o.Context, prefixKey, s)
+		o.Context = context.WithValue(o.Context, prefixKey{}, s)
 	}
 }

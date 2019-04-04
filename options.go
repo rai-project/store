@@ -35,6 +35,7 @@ type UploadOptions struct {
 	Progress              *pb.ProgressBar
 	ProgressOutput        io.Writer
 	ProgressFinishMessage string
+	Metadata              map[string]string
 	Context               context.Context
 }
 
@@ -55,6 +56,17 @@ func UploadProgressOutput(out io.Writer) UploadOption {
 func UploadProgressFinishMessage(s string) UploadOption {
 	return func(opts *UploadOptions) {
 		opts.ProgressFinishMessage = s
+	}
+}
+
+func UploadMetadata(mp map[string]string) UploadOption {
+	return func(opts *UploadOptions) {
+		if opts.Metadata == nil {
+			opts.Metadata = map[string]string{}
+		}
+		for k, v := range mp {
+			opts.Metadata[k] = v
+		}
 	}
 }
 

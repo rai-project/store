@@ -94,7 +94,7 @@ func (s *s3Client) Upload(path string, key string, opts ...store.UploadOption) (
 	options := store.UploadOptions{
 		Context: context.WithValue(
 			context.Background(),
-			contentTypeKey,
+			contentTypeKey{},
 			contentType,
 		),
 	}
@@ -103,7 +103,7 @@ func (s *s3Client) Upload(path string, key string, opts ...store.UploadOption) (
 		o(&options)
 	}
 
-	if fileSizeLimit, ok := options.Context.Value(fileSizeLimitKey).(int64); ok {
+	if fileSizeLimit, ok := options.Context.Value(fileSizeLimitKey{}).(int64); ok {
 		fileSize, err := com.FileSize(path)
 		if err != nil {
 			return "", errors.Wrapf(err, "Cannot get file size for %s.", path)
@@ -145,9 +145,10 @@ func (s *s3Client) UploadFrom(reader io.Reader, key string, opts ...store.Upload
 	options := store.UploadOptions{
 		Context: context.WithValue(
 			context.Background(),
-			aclKey,
+			aclKey{},
 			Config.ACL,
 		),
+		Metadata: map[string]string{},
 	}
 
 	for _, o := range opts {
@@ -163,26 +164,26 @@ func (s *s3Client) UploadFrom(reader io.Reader, key string, opts ...store.Upload
 	}
 
 	var expires *time.Time
-	if e, ok := options.Context.Value(lifetimeKey).(time.Duration); ok {
+	if e, ok := options.Context.Value(lifetimeKey{}).(time.Duration); ok {
 		t := time.Now().Add(e)
 		expires = aws.Time(t)
 	}
-	if e, ok := options.Context.Value(expirationKey).(time.Time); ok {
+	if e, ok := options.Context.Value(expirationKey{}).(time.Time); ok {
 		expires = aws.Time(e)
 	}
 
 	metadata := map[string]*string{}
-	if m, ok := options.Context.Value(metadataKey).(map[string]*string); ok {
-		metadata = m
+	for k, v := range options.Metadata {
+		metadata[k] = aws.String(v)
 	}
 
 	var acl *string
-	if a, ok := options.Context.Value(aclKey).(string); ok {
+	if a, ok := options.Context.Value(aclKey{}).(string); ok {
 		acl = aws.String(a)
 	}
 
 	var contentType *string
-	if m, ok := options.Context.Value(contentTypeKey).(string); ok {
+	if m, ok := options.Context.Value(contentTypeKey{}).(string); ok {
 		contentType = aws.String(m)
 	}
 
